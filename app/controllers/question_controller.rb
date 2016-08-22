@@ -4,7 +4,7 @@ class QuestionController < ApplicationController
   end
 
   def show
-    @questions = Question.find(params[:id])
+    @question = Question.find
   end
 
   def new
@@ -17,7 +17,7 @@ class QuestionController < ApplicationController
     @question.body = params[:question][:body]
     @question.resolved = params[:question][:resolved]
 
-    if @question.saved
+    if @question.save
       flash[:notice] = "Question has been saved."
       redirect_to @question
     else flash.now[:alert] = "Save error, try again"
@@ -35,7 +35,7 @@ class QuestionController < ApplicationController
     @question.body = params[:question][:body]
     @question.resolved = params[:question][:resolved]
 
-    if @question.saved
+    if @question.save
       flash[:notice] = "Question has been saved."
       redirect_to @question
     else flash.now[:alert] = "Save error, try again"
