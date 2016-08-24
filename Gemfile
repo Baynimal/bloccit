@@ -39,3 +39,5 @@ group :development do
   gem 'spring'
 end
 gem 'bootstrap-sass'
+#Use for encrypting User password
+gem 'bcrypt'
