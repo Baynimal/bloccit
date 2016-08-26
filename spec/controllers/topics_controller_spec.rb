@@ -12,7 +12,7 @@ RSpec.describe TopicsController, type: :controller do
 
     it "assigns my_topic to @topics " do
       get :index
-      expect(assigns(:topics)).to eq(my_topic)
+      expect(assigns(:topics)).to eq([my_topic])
     end
   end
 
@@ -28,11 +28,11 @@ RSpec.describe TopicsController, type: :controller do
       expect(response).to render_template :show
     end
 
-# this spec has a syntax error which i cannot debug     
-    # it "assigns my_topic to @topic" do
-    #   get :show, {id: my_topic.id}
-    #   expect(assigns)(:topic)).to eq(my_topic)
-    # end
+this spec has a syntax error which i cannot debug
+    it "assigns my_topic to @topic" do
+      get :show, {id: my_topic.id}
+      expect(assigns)(:topic)).to eq(my_topic)
+    end
   end
 
   describe "GET new" do
@@ -88,7 +88,7 @@ RSpec.describe TopicsController, type: :controller do
 
       expect(topic_instance.id).to eq my_topic.id
       expect(topic_instance.name).to eq my_topic.name
-      expect(topic_instance).to eq my_topic.description
+      expect(topic_instance.description).to eq my_topic.description
     end
   end
 
