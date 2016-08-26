@@ -19,8 +19,8 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "initializes a session" do
-      post :create, session: {email: my_user.eamil, password: my_user.password}
-      expect(session[:user_id].to eq my_user.id)
+      post :create, session: {email: my_user.email, password: my_user.password}
+      expect(session[:user_id]).to eq my_user.id
     end
 
     it "does not add a user id to session due to missing password" do
@@ -53,13 +53,13 @@ RSpec.describe SessionsController, type: :controller do
 
     it "deletes the user's session" do
       delete :destroy, id: my_user.id
-      expect(assigns(:session)).to be_present
+      expect(assigns(:session)).to be_nil
     end
 
     it "flashes #notice" do
       delete :destroy, id: my_user.id
       expect(flash[:notice]).to be_present
     end
-  end 
+  end
 
 end
