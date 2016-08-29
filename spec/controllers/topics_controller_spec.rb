@@ -28,11 +28,11 @@ RSpec.describe TopicsController, type: :controller do
       expect(response).to render_template :show
     end
 
-# this spec has a syntax error which i cannot debug
-#     it "assigns my_topic to @topic" do
-#       get :show, {id: my_topic.id}
-#       expect(assigns)(:topic)).to eq(my_topic)
-#     end
+#this spec has a syntax error which i cannot debug
+    it "assigns my_topic to @topic" do
+      get :show, {id: my_topic.id}
+      expect(assigns(:topic)).to eq(my_topic)
+    end
   end
 
   describe "GET new" do
