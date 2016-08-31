@@ -1,5 +1,7 @@
 class TopicsController < ApplicationController
 
+   
+
   def index
     @topics = Topic.all
   end
@@ -54,8 +56,17 @@ class TopicsController < ApplicationController
     end
   end
 
+
+  private
   def topic_params
     params.require(:topic).permit(:name, :description, :public)
-  end 
+  end
+
+  def authorize_user
+    unless current_user.admin?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to topics_path
+    end
+  end
 
 end
