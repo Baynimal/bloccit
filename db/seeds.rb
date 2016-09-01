@@ -19,7 +19,7 @@ topics = Topic.all
 
 50.times do
   Post.create!(
-  user: users.sample,
+    user: users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
@@ -30,6 +30,7 @@ post = Post.all
 
 100.times do
   Comment.create!(
+    user: users.sample,
     post: post.sample,
     body: RandomData.random_paragraph
   )
