@@ -5,12 +5,17 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
+
+    # @commentable = params[:post_id].present? ? Post.find(params[:post_id]) : Topic.find(params[:topic_id])
     comment = @post.comments.new(comment_params)
+    # comment = @commentable.comments.new(comment_params)
     comment.user = current_user
 
     if comment.save
       flash[:notice] = "Comment saved successfully."
       redirect_to [@post.topic, @post]
+      # location = @commentable.is_a?(Post) ? [@commentable.topic, @commentable] : @commentable
+      # redirect_to location
     else
       flash[:alert] = "Comment failed to save."
       redirect_to [@post.topic, @post]
@@ -42,6 +47,6 @@ class CommentsController < ApplicationController
       flash[:alert] = "You do not have permission to delete a comment."
       redirect_to [comment.post.topic, comment.post]
     end
-  end 
+  end
 
 end

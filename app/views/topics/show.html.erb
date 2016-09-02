@@ -7,9 +7,13 @@
 
 <div class="row">
   <div clas="col-md-8">
-    <p class="lead"><%= @topic.description %></p>
-        <%= render @topic.posts %>
-    </div>
+    <p class="lead">
+     <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
+     <br />
+     <%= @topic.description %>
+    </p>
+    <%= render @topic.posts %>
+  </div>
   <% if current_user %>
     <div class="col-md-4">
       <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
