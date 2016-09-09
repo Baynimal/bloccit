@@ -1,6 +1,6 @@
 <div>
   <%= render partial: 'votes/voter', locals: { post: @post } %>
-  <h1>
+  <h1 class="push-right">
     <%= @post.title %> <br>
     <small>
       submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %>
