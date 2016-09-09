@@ -4,9 +4,9 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
-
   # has_many :comments, as: :commentable
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   after_create :create_vote
 
   default_scope { order('rank DESC') }

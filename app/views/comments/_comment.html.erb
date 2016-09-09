@@ -1,4 +1,4 @@
-<div class="media" >
+<%= content_tag :div , class: 'media', id: "comment-#{comment.id}" do %>
 <!-- <div id="comment-<%= comment.id %>">   this is for the AJAX checkpoint-->
   <div class="media-body">
     <small>
@@ -9,4 +9,4 @@
     </small>
     <p><%= comment.body%></p>
   </div>
-</div>
+<% end %>

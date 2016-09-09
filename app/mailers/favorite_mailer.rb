@@ -1,0 +1,17 @@
+class FavoriteMailer < ApplicationMailer
+
+  default from: "dru_baynes@hotmail.com"
+
+  def new_comment(user, post, comment)
+    headers["Message-ID"] = "<comments/#{comment.id}@your-app-name.example>"
+    headers["In-Reply_to"] = "<post/#{post.id}@your-app-name.example>"
+    headers["References"] = "<post/#{post.id}@your-app-name.example>"
+
+    @user = user
+    @post = post
+    @comment = comment
+
+    mail(to: user.email, subject: "new Comment on #{post.title}")
+  end 
+
+end
