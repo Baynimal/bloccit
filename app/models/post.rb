@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   after_create :create_vote
-  after_create :favorite_post
+  after_create :create_favorite
   # has_many :comments, as: :commentable
 
   default_scope { order('rank DESC') }
