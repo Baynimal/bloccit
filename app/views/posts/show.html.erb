@@ -18,11 +18,15 @@
     <p><%= @post.body %></p>
     <div>
       <h3>Comments</h3>
-      <%= render @post.comments %>
-      <% if current_user %>
-        <%= render 'comments/form', comment: Comment.new, post: @post %>
-      <% end %>
-    </div>
+        <div class'js-comments'>
+          <%= render @post.comments %>
+        </div>
+        <% if current_user %>
+        <div class='new-comment'>
+          <%= render 'comments/form', comment: Comment.new, post: @post %>
+        </div>
+        <% end %>
+      </div>
   </div>
   <% if user_is_authorized_for_posts?(@post) %>
     <div clas="col-md-4">
