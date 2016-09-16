@@ -3,7 +3,9 @@ require 'rails_helper'
   RSpec.describe Comment, type: :model do
   let(:topic) { create(:topic) }
   let(:user) { create(:user) }
-  let(:post) { create(:post) }  
+  let(:post) { create(:post, user: user) }  # explicitly assign to user
+  let(:favorite_user) { create(:user) }
+  let(:non_favorite_user) { create(:user)}
   let(:comment) {Comment.create!(body: 'Comment Body', post: post, user: user) }
 
   it { is_expected.to belong_to(:post) }
