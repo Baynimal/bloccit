@@ -18,7 +18,7 @@ class Api::V1::TopicsController < Api::V1::BaseController
      if topic.update_attributes(topic_params)
        render json: topic, status: 200
      else
-       render json: {error: "Topic update failed", status: 400}, status: 400
+       render json: {error: "Topic was updated successfully.", status: 400}, status: 400
      end
    end
 
@@ -29,7 +29,7 @@ class Api::V1::TopicsController < Api::V1::BaseController
        topic.save!
        render json: topic, status: 201
      else
-       render json: {error: "Topic is invalid", status: 400}, status: 400
+       render json: {error: "Topic was not created. Please try again. ", status: 400}, status: 400
      end
    end
 
@@ -37,11 +37,11 @@ class Api::V1::TopicsController < Api::V1::BaseController
      topic = Topic.find(params[:id])
 
    if topic.destroy
-     render json: {message: "Topic destroyed", status: 200}, status: 200
+     render json: {message: "Topic was deleted successfully.", status: 200}, status: 200
    else
-     render json: {error: "Topic destroy failed", status: 400}, status: 400
+     render json: {error: "There was an error in deleting the topic. Please try again", status: 400}, status: 400
    end
- end 
+ end
 
 
    private

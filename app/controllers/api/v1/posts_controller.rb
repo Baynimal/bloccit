@@ -11,4 +11,42 @@ class Api::V1::PostsController < Api::V1::BaseController
     post = Post.find(params[:id])
     render json: post.to_json(include: :comments), status: 200
   end
+
+  def create
+    topic = Topic.find(params[:topic_id])
+    post= topic.posts.new(post_params)
+
+    if post.valid?
+      post.save!
+      render json: post, status: 201
+    else
+      render json: {error: "Post was not updated", status: 400}, status:400
+    end
+  end
+
+  def update
+    post = Post.find(params[:id])
+
+    if post.update_attributes(post_params)
+      render json: post, status: 200
+    else
+      render json: {error: "Post was not update. Please try again.", status: 400}, status: 400
+    end 
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+
+    if post.destroy
+      render json: {message: "Post was deleted successfully.", status: 200}, status: 200
+    else
+      render json: {error: "Post was not successfully delted. Please try again", status: 400}, status: 400
+  end
+ end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end
